@@ -21,13 +21,13 @@ public class EvenNumbersIterator implements Iterator<Integer> {
         if (!hasNext()) {
             throw new NoSuchElementException();
         }
-        point = getIndexOfEvenNumber(data, point);
         return data[point++];
     }
 
     private int getIndexOfEvenNumber(int[] data, int pos) {
         for (int itr = pos; itr < data.length; itr++) {
             if (data[itr] % 2 == 0) {
+                point = itr;
                 return itr;
             }
         }
