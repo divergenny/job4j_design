@@ -4,16 +4,15 @@ import java.util.Map;
 
 public class MemStore<T extends Base> implements Store<T> {
     private final Map<String, T> mem = new HashMap<>();
-    int id = 0;
 
     @Override
     public void add(T model) {
-        mem.put(String.valueOf(id++), model);
+        mem.put(model.getId(), model);
     }
 
     @Override
     public boolean replace(String id, T model) {
-        if (Integer.parseInt(id) <= this.id) {
+        if (mem.containsKey(id)) {
             mem.put(id, model);
             return true;
         }
@@ -22,9 +21,8 @@ public class MemStore<T extends Base> implements Store<T> {
 
     @Override
     public boolean delete(String id) {
-        if (Integer.parseInt(id) <= this.id) {
+        if (mem.containsKey(id)) {
             mem.remove(id);
-            this.id--;
             return true;
         }
         return false;
@@ -32,6 +30,6 @@ public class MemStore<T extends Base> implements Store<T> {
 
     @Override
     public T findById(String id) {
-        return mem.get(id);
+        return mem.getOrDefault(id, null);
     }
 }
