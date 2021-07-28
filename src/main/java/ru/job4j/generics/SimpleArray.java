@@ -27,17 +27,18 @@ public class SimpleArray<T> implements Iterable<T> {
     public void remove(int removedIndex) {
         Objects.checkIndex(removedIndex, size);
         System.arraycopy(array, removedIndex + 1,
-                array, removedIndex, array.length - 1 - removedIndex);
+                array, removedIndex, size - removedIndex);
         size--;
     }
 
     public T get(int index) {
+        Objects.checkIndex(index, size);
         return array[index];
     }
 
     @Override
     public Iterator<T> iterator() {
-        return new SimpleArrayIterator<>(array);
+        return new SimpleArrayIterator<>(array, size);
     }
 
     @Override
