@@ -39,4 +39,17 @@ public class SimpleArrayTest {
         expected.add(3);
         assertEquals(expected, integers);
     }
+
+    @Test
+    public void whenAddAndRemoveAllElements() {
+        SimpleArray<Integer> list = new SimpleArray<>(3);
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.remove(2);
+        list.remove(1);
+        list.remove(0);
+        SimpleArray<Integer> expected = new SimpleArray<>(3);
+        assertEquals(expected, list);
+    }
 }
