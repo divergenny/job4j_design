@@ -33,7 +33,7 @@ public class SimpleArray<T> implements Iterable<T> {
     }
 
     private T[] grow() {
-        capacity++;
+        capacity *= 2;
         T[] copy = (T[]) new Object[capacity];
         System.arraycopy(container, 0,
                 copy, 0, size);
