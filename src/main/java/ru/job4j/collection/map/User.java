@@ -59,12 +59,10 @@ public class User {
                 && Objects.equals(birthday, user.birthday);
     }
 
-    /*
     @Override
     public int hashCode() {
         return Objects.hash(name, children, birthday);
     }
-     */
 
     public static void main(String[] args) {
         User firstUser = new User("Valera", 2,
