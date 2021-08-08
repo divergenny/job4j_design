@@ -56,7 +56,7 @@ public class SimpleLinkedList<E> implements List<E> {
                 if (modCount != expectedModCount) {
                     throw new ConcurrentModificationException();
                 }
-                return itrSize <= size;
+                return itrSize < size;
             }
 
             @Override
