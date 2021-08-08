@@ -30,10 +30,10 @@ public class SimpleSetTest {
         set.add(3);
         set.add(4);
         Iterator<Integer> it = set.iterator();
-        assertThat(it.next(), Is.is(1) );
-        assertThat(it.next(), Is.is(2) );
-        assertThat(it.next(), Is.is(3) );
-        assertThat(it.next(), Is.is(4) );
+        assertThat(it.next(), Is.is(1));
+        assertThat(it.next(), Is.is(2));
+        assertThat(it.next(), Is.is(3));
+        assertThat(it.next(), Is.is(4));
         assertFalse(it.hasNext());
     }
 }
