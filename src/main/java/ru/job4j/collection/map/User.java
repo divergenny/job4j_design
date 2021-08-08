@@ -42,11 +42,10 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", children=" + children +
-                ", birthday=" + birthday +
-                '}';
+        return "User{" + "name='" + name + '\''
+                + ", children=" + children
+                + ", birthday=" + birthday
+                + '}';
     }
 
     public static void main(String[] args) {
