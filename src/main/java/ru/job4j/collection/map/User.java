@@ -69,10 +69,10 @@ public class User {
                 new GregorianCalendar(1997, Calendar.AUGUST, 12));
         User secondUser = new User("Valera", 2,
                 new GregorianCalendar(1997, Calendar.AUGUST, 12));
-        Map<User, Object> map = new HashMap<>();
+        HashMap<User, Object> map = new HashMap<User, Object>();
         map.put(firstUser, new Object());
         map.put(secondUser, new Object());
-        for (Map.Entry<User, Object> user : map.entrySet()) {
+        for (HashMap.Entry<User, Object> user : map.entrySet()) {
             System.out.println("key: " + user.getKey());
             System.out.println("value: " + user.getValue());
         }
