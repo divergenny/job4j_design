@@ -10,7 +10,7 @@ public class ResultFile {
                 for (int cell = 0; cell < multiplicationTable.length; cell++) {
                     out.write((multiplicationTable[row][cell] + "\t").getBytes());
                 }
-                out.write("\n".getBytes());
+                out.write(System.lineSeparator().getBytes());
             }
             System.out.println("Successfully done");
         } catch (Exception e) {
