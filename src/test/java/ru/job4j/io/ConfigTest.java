@@ -2,6 +2,7 @@ package ru.job4j.io;
 
 import org.hamcrest.Matchers;
 import org.junit.Test;
+
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -42,7 +43,7 @@ public class ConfigTest {
         assertThat(config.value("name"), is("Petr Arsentev"));
     }
 
-    @Test (expected = IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void whenNotStandardProperty() {
         String path = "./data/pair_exception_not_standard.properties";
         Config config = new Config(path);
