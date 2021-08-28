@@ -13,6 +13,7 @@ public class ConfigTest {
         Config config = new Config(path);
         config.load();
         assertThat(config.value("hibernate.connection.username"), is("postgres"));
+        assertThat(config.value("hibernate.connection.url"), is(Matchers.nullValue()));
     }
 
     @Test
@@ -41,7 +42,7 @@ public class ConfigTest {
         assertThat(config.value("name"), is("Petr Arsentev"));
     }
 
-    @Test (expected = UnsupportedOperationException.class)
+    @Test (expected = IllegalArgumentException.class)
     public void whenNotStandardProperty() {
         String path = "./data/pair_exception_not_standard.properties";
         Config config = new Config(path);
