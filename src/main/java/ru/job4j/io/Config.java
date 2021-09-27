@@ -19,7 +19,7 @@ public class Config {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(this.path))) {
             String line;
             while (null != (line = bufferedReader.readLine())) {
-                if (!line.startsWith("#") && !line.isEmpty() && !line.contains("//")) {
+                if (!line.startsWith("#") && !line.isEmpty()) {
                     String[] parts = line.split("=");
                     if (parts.length < 2 || parts[0].isEmpty() || parts[1].isEmpty()) {
                         throw new IllegalArgumentException();
