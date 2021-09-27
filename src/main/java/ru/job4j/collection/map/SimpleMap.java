@@ -1,5 +1,7 @@
 package ru.job4j.collection.map;
 
+import org.antlr.v4.runtime.misc.NotNull;
+
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -48,7 +50,7 @@ public class SimpleMap<K, V> implements Map<K, V> {
             if (keySetValue != null) {
                 put(keySetValue.key, keySetValue.value);
                 count--;
-                modCount--;
+                modCount++;
             }
         }
     }
@@ -69,7 +71,7 @@ public class SimpleMap<K, V> implements Map<K, V> {
         if (table[index] != null && table[index].key.equals(key)) {
             table[index] = null;
             count--;
-            modCount--;
+            modCount++;
             result = true;
         }
         return result;
