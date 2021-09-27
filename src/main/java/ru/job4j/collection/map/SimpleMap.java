@@ -49,8 +49,6 @@ public class SimpleMap<K, V> implements Map<K, V> {
         for (MapEntry<K, V> keySetValue : oldTable) {
             if (keySetValue != null) {
                 put(keySetValue.key, keySetValue.value);
-                count--;
-                modCount++;
             }
         }
     }
