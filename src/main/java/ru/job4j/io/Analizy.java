@@ -4,8 +4,8 @@ import java.io.*;
 
 public class Analizy {
     public void unavailable(String source, String target) {
-        try (BufferedReader read = new BufferedReader(new FileReader(source))) {
-            PrintWriter writer = new PrintWriter(new FileOutputStream(target));
+        try (BufferedReader read = new BufferedReader(new FileReader(source));
+             PrintWriter writer = new PrintWriter(new FileOutputStream(target))) {
             while (read.ready()) {
                 String line = read.readLine();
                 String[] twoData = line.split(" ");
@@ -18,14 +18,12 @@ public class Analizy {
                         statusChanged = twoData[0].contains("200") || twoData[0].contains("300");
                     }
                     if (statusChanged) {
-                        writer.println(";" + twoData[1]);
+                        writer.print(";" + twoData[1] + System.lineSeparator());
                     } else {
-                        writer.println(";error");
+                        writer.print(";error" + System.lineSeparator());
                     }
                 }
             }
-            read.close();
-            writer.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
