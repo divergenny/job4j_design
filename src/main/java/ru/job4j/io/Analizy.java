@@ -31,9 +31,9 @@ public class Analizy {
 
     public static void main(String[] args) {
         String sourceOne = "./data/analazy/sample_1.csv";
-        String sourceTwo = "./data/analazy/sample_1.csv";
+        String sourceTwo = "./data/analazy/sample_2.csv";
         String targetOne = "./data/analazy/result_1.csv";
-        String targetTwo = "./data/analazy/result_1.csv";
+        String targetTwo = "./data/analazy/result_2.csv";
         Analizy analise = new Analizy();
         analise.unavailable(sourceOne, targetOne);
         analise.unavailable(sourceTwo, targetTwo);
