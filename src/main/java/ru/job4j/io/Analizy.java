@@ -28,4 +28,14 @@ public class Analizy {
             e.printStackTrace();
         }
     }
+
+    public static void main(String[] args) {
+        String sourceOne = "./data/analazy/sample_1.csv";
+        String sourceTwo = "./data/analazy/sample_1.csv";
+        String targetOne = "./data/analazy/result_1.csv";
+        String targetTwo = "./data/analazy/result_1.csv";
+        Analizy analise = new Analizy();
+        analise.unavailable(sourceOne, targetOne);
+        analise.unavailable(sourceTwo, targetTwo);
+    }
 }
