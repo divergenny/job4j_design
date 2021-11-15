@@ -9,9 +9,14 @@ import java.util.function.Predicate;
 
 public class Search {
     public static void main(String[] args) throws IOException {
-        Path start = Paths.get("C:/java");
+        if (args.length == 0) {
+            throw new IllegalArgumentException("Path is null. Usage java -jar target/search.jar Path extension of file.");
+        } else if (args.length == 1) {
+            throw new IllegalArgumentException("File extension is null. Usage java -jar target/search.jar Path extension of file.");
+        }
+        Path start = Paths.get(args[0]);
         search(start, p -> p.toFile().getName()
-                .endsWith("js"))
+                .endsWith(args[1]))
                 .forEach(System.out::println);
     }
 
