@@ -14,9 +14,10 @@ import java.util.Set;
 public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
     Set<FileProperty> setOfUniqueFiles = new HashSet<>();
     List<FileProperty> listOfDuplicates = new ArrayList<>();
+    ArrayList<FileProperty> allDuplicates = new ArrayList<>();
 
-    public List<FileProperty> getListOfDuplicates() {
-        return listOfDuplicates;
+    public String getNameOfFile(String path) {
+        return path.substring(path.lastIndexOf("\\") + 1);
     }
 
     @Override
@@ -36,7 +37,27 @@ public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
         return super.visitFile(file, attrs);
     }
 
-    public String getNameOfFile(String path) {
-        return path.substring(path.lastIndexOf("\\") + 1);
+    public void showDuplicates() {
+        if (listOfDuplicates.size() > 0) {
+            for (var uniqueFile : setOfUniqueFiles) {
+                int flag = 0;
+                for (var duplicate : listOfDuplicates) {
+                    if (getNameOfFile(uniqueFile.getName()).equals(getNameOfFile(duplicate.getName()))
+                            && uniqueFile.getSize() == duplicate.getSize()) {
+                        if (flag == 0) {
+                            allDuplicates.add(uniqueFile);
+                        }
+                        allDuplicates.add(duplicate);
+                        flag = 1;
+                    }
+                }
+            }
+            System.out.println("Duplicates: ");
+            for (var duplicate : allDuplicates) {
+                System.out.println(duplicate.getName());
+            }
+        } else {
+            System.out.println("Duplicates not found");
+        }
     }
 }
