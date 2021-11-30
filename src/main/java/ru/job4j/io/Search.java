@@ -23,6 +23,13 @@ public class Search {
         return searcher.getPaths();
     }
 
+    /**
+     * Method validate input parameters.
+     * In case input parameters not correct,
+     * it thrown IllegalArgumentException
+     *
+     * @param args array of arguments
+     */
     public static void validateArguments(String[] args) {
         if (args.length != 2) {
             throw new IllegalArgumentException("Something went wrong, check your arguments. "
