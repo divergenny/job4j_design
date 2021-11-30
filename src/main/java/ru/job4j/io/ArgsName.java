@@ -19,13 +19,15 @@ public class ArgsName {
         for (var value : args) {
             String[] data = value.split("=");
             if (data.length == 2) {
-                data[0] = data[0].replace("-", "");
-                data[1] = data[1].replace("-", "");
-                values.put(data[0], data[1]);
+                values.put(normalizeForm(data[0]), normalizeForm(data[1]));
             } else {
                 throw new IllegalArgumentException("Data is not fit.");
             }
         }
+    }
+
+    public String normalizeForm(String data) {
+        return data.toCharArray()[0] == '-' ? data.replaceFirst("-", "") : data;
     }
 
     public static ArgsName of(String[] args) {
