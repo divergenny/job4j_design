@@ -19,8 +19,8 @@ public class ArgsName {
         for (var value : args) {
             String[] data = value.split("=");
             if (data.length == 2) {
-                data[0] = data[0].replace("-","");
-                data[1] = data[1].replace("-","");
+                data[0] = data[0].replace("-", "");
+                data[1] = data[1].replace("-", "");
                 values.put(data[0], data[1]);
             } else {
                 throw new IllegalArgumentException("Data is not fit.");
@@ -35,10 +35,10 @@ public class ArgsName {
     }
 
     public static void main(String[] args) {
-        ArgsName jvm = ArgsName.of(new String[] {"-Xmx=512", "-encoding=UTF-8"});
+        ArgsName jvm = ArgsName.of(new String[]{"-Xmx=512", "-encoding=UTF-8"});
         System.out.println(jvm.get("Xmx"));
 
-        ArgsName zip = ArgsName.of(new String[] {"-out=project.zip", "-encoding=UTF-8"});
+        ArgsName zip = ArgsName.of(new String[]{"-out=project.zip", "-encoding=UTF-8"});
         System.out.println(zip.get("out"));
     }
 }
