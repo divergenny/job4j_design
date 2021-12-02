@@ -9,7 +9,7 @@ public class ArgsName {
     public String get(String key) {
         String rslt = values.get(key);
         if (null == rslt) {
-            throw new IllegalArgumentException("Not exist.");
+            throw new IllegalArgumentException(String.format("%s key not exist.", key));
         } else {
             return rslt;
         }
@@ -32,6 +32,15 @@ public class ArgsName {
 
     public static ArgsName of(String[] args) {
         ArgsName names = new ArgsName();
+        names.parse(args);
+        return names;
+    }
+
+    public static ArgsName of(String[] args, Integer requiredLength, String explanatoryInformation) {
+        ArgsName names = new ArgsName();
+        if (requiredLength != args.length) {
+            throw new IllegalArgumentException(explanatoryInformation);
+        }
         names.parse(args);
         return names;
     }
