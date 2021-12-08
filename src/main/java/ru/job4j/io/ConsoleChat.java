@@ -25,24 +25,24 @@ public class ConsoleChat {
         List<String> log = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
         String question = "";
-        while (!question.equals(OUT)) {
+        while (!OUT.equals(question)) {
             timeStamp = new SimpleDateFormat("dd:MM:yyyy HH::mm::ss")
                     .format(Calendar.getInstance().getTime());
             question = greeting(scanner, log, timeStamp);
             log.add(question + ", " + timeStamp);
-            if (question.equals(STOP)) {
-                while (!question.equals(CONTINUE)) {
+            if (STOP.equals(question)) {
+                while (!CONTINUE.equals(question)) {
                     question = scanner.nextLine();
                     timeStamp = new SimpleDateFormat("dd:MM:yyyy HH::mm::ss")
                             .format(Calendar.getInstance().getTime());
                     log.add(question + ", " + timeStamp);
-                    if (question.equals(OUT)) {
+                    if (OUT.equals(question)) {
                         question = STOP;
                         break;
                     }
                 }
             }
-            if (question.equals(STOP)) {
+            if (STOP.equals(question)) {
                 break;
             }
             String phrase = getRandomPhrase(botPhrases);
