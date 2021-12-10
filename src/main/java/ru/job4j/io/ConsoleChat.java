@@ -11,6 +11,8 @@ public class ConsoleChat {
     private static final String OUT = "закончить";
     private static final String STOP = "стоп";
     private static final String CONTINUE = "продолжить";
+    List<String> log = new ArrayList<>();
+    SimpleDateFormat format = new SimpleDateFormat("dd:MM:yyyy HH:mm::ss");
 
     public ConsoleChat(String path, String botAnswers) {
         this.path = path;
@@ -18,39 +20,27 @@ public class ConsoleChat {
     }
 
     public void run() {
-        String timeStamp = "";
-        validatePath(this.path);
-        validatePath(this.botAnswers);
         List<String> botPhrases = readPhrases();
-        List<String> log = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
-        String question = "";
+        greeting();
+        String question = scanner.nextLine();
+        mainLoop:
         while (!OUT.equals(question)) {
-            timeStamp = new SimpleDateFormat("dd:MM:yyyy HH::mm::ss")
-                    .format(Calendar.getInstance().getTime());
-            question = greeting(scanner, log, timeStamp);
-            log.add(question + ", " + timeStamp);
             if (STOP.equals(question)) {
                 while (!CONTINUE.equals(question)) {
                     question = scanner.nextLine();
-                    timeStamp = new SimpleDateFormat("dd:MM:yyyy HH::mm::ss")
-                            .format(Calendar.getInstance().getTime());
-                    log.add(question + ", " + timeStamp);
+                    logSaveWithTime(question, false);
                     if (OUT.equals(question)) {
-                        question = STOP;
-                        break;
+                        break mainLoop;
                     }
                 }
             }
-            if (STOP.equals(question)) {
-                break;
-            }
-            String phrase = getRandomPhrase(botPhrases);
-            log.add(phrase + ", " + timeStamp);
-            System.out.println(phrase);
+            logSaveWithTime(question, false);
+            logSaveWithTime(getRandomPhrase(botPhrases), true);
+            question = scanner.nextLine();
         }
-        System.out.println(goodBye(log, timeStamp));
-        saveLog(log);
+        goodBye();
+        saveLog();
     }
 
     private String getRandomPhrase(List<String> botPhrases) {
@@ -61,6 +51,10 @@ public class ConsoleChat {
     }
 
     private List<String> readPhrases() {
+        File file = new File(this.botAnswers);
+        if (!file.exists()) {
+            throw new IllegalArgumentException(String.format("Not exist %s", file.getAbsoluteFile()));
+        }
         List<String> answers = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(botAnswers))) {
             br.lines().forEach(answers::add);
@@ -70,29 +64,20 @@ public class ConsoleChat {
         return answers;
     }
 
-    private void validatePath(String path) {
-        File file = new File(path);
-        if (!file.exists()) {
-            throw new IllegalArgumentException(String.format("Not exist %s", file.getAbsoluteFile()));
-        }
-    }
-
-    private void saveLog(List<String> log) {
-        try (PrintWriter pw = new PrintWriter(new FileWriter(this.path, Charset.forName("UTF-8"), true))) {
+    private void saveLog() {
+        try (PrintWriter pw = new PrintWriter(new FileWriter(this.path, Charset.forName("UTF-8"), false))) {
             log.forEach(pw::println);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private String greeting(Scanner scanner, List<String> log, String currTime) {
+    private void greeting() {
         String greetMessage = "Здравствуй дорогой пользователь, пожалуйста, задай свой вопрос: ";
-        System.out.println(greetMessage);
-        log.add(greetMessage + ", " + currTime);
-        return scanner.nextLine();
+        logSaveWithTime(greetMessage, true);
     }
 
-    private String goodBye(List<String> log, String currTime) {
+    private void goodBye() {
         SimpleDateFormat sdf = new SimpleDateFormat("HH");
         int currHours = Integer.parseInt(sdf.format(new Date()));
         String dayTime;
@@ -105,8 +90,14 @@ public class ConsoleChat {
             dayTime = "Вечера!";
         }
         goodbyeMessage += dayTime;
-        log.add(goodbyeMessage + ", " + currTime);
-        return goodbyeMessage;
+        logSaveWithTime(goodbyeMessage, true);
+    }
+
+    private void logSaveWithTime(String message, boolean print) {
+        log.add(format.format(Calendar.getInstance().getTime()) + " : " + message);
+        if (print) {
+            System.out.println(message);
+        }
     }
 
     public static void main(String[] args) {
