@@ -24,6 +24,7 @@ public class ConsoleChat {
         Scanner scanner = new Scanner(System.in);
         greeting();
         String question = scanner.nextLine();
+        logSaveWithTime(question, false);
         mainLoop:
         while (!OUT.equals(question)) {
             if (STOP.equals(question)) {
@@ -35,9 +36,9 @@ public class ConsoleChat {
                     }
                 }
             }
-            logSaveWithTime(question, false);
             logSaveWithTime(getRandomPhrase(botPhrases), true);
             question = scanner.nextLine();
+            logSaveWithTime(question, false);
         }
         goodBye();
         saveLog();
