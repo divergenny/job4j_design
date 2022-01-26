@@ -32,7 +32,6 @@ public class EchoServer {
                     }
                     if (message.matches(".*\\s/\\?msg=Exit\\s.*")) {
                         sendAnswerFromServer(out, "Shut down the server.");
-                        out.flush();
                         server.close();
                     } else if (message.matches(".*\\s/\\?msg=Hello\\s.*")) {
                         sendAnswerFromServer(out, "Hello.");
