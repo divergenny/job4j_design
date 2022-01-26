@@ -25,7 +25,7 @@ public class EchoServer {
                         }
                         System.out.println(str);
                     }
-                    if (message.matches(".*\s/\\?msg=Bye\s.*")) {
+                    if (message.matches(".*\\s/\\?msg=Bye\\s.*")) {
                         System.out.println("The server is shutting down. Bye!");
                         server.close();
                     }
