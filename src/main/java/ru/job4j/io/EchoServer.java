@@ -25,10 +25,8 @@ public class EchoServer {
                         }
                         System.out.println(str);
                     }
-                    message = message.substring(message.indexOf("=") + 1, message.indexOf("HTTP"));
-                    message = message.trim();
-                    if ("Bye".equals(message)) {
-                        System.out.println("Server end the work. Bye!");
+                    if (message.matches(".*\s/\\?msg=Bye\s.*")) {
+                        System.out.println("The server is shutting down. Bye!");
                         server.close();
                     }
                     out.flush();
