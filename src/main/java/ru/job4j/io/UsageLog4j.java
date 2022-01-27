@@ -27,9 +27,9 @@ public class UsageLog4j {
         char firstLetterOfName = 'V';
         LOG.trace("trace message");
         LOG.debug("debug message");
-        LOG.info("User information: Year of birth: {}, Day of birth: {}, Month of birth: {}, " +
-                        "Living days: {}, Good days: {}, Bad days: {}," +
-                        "First letter of name: {}, Is he alive: {}",
+        LOG.info("User information: Year of birth: {}, Day of birth: {}, Month of birth: {}, "
+                        + "Living days: {}, Good days: {}, Bad days: {},"
+                        + "First letter of name: {}, Is he alive: {}",
                 year, day, month, livingDays, goodDays, badDays, firstLetterOfName, isAlive);
         LOG.warn("warn message");
         LOG.error("error message");
