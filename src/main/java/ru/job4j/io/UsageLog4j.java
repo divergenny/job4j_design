@@ -17,9 +17,20 @@ public class UsageLog4j {
     private static final Logger LOG = LoggerFactory.getLogger(UsageLog4j.class.getName());
 
     public static void main(String[] args) {
+        byte month = 1;
+        short day = 1;
+        int year = 1998;
+        long livingDays = 123456789L;
+        double goodDays = 365;
+        float badDays = 1;
+        boolean isAlive = true;
+        char firstLetterOfName = 'V';
         LOG.trace("trace message");
         LOG.debug("debug message");
-        LOG.info("info message");
+        LOG.info("User information: Year of birth: {}, Day of birth: {}, Month of birth: {}, " +
+                        "Living days: {}, Good days: {}, Bad days: {}," +
+                        "First letter of name: {}, Is he alive: {}",
+                year, day, month, livingDays, goodDays, badDays, firstLetterOfName, isAlive);
         LOG.warn("warn message");
         LOG.error("error message");
     }
