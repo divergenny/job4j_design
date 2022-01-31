@@ -1,0 +1,47 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+<GameMembers online="2" nameOfGame="Harry Potter 5">
+    <gamers>
+        <gamer age="16" nickname="StrajGalaktiki" online="true" friendsItr="2">
+            <friends>
+                <friend>Tanos</friend>
+                <friend>ChelovekPauk</friend>
+                <friend>null</friend>
+                <friend>null</friend>
+                <friend>null</friend>
+                <friend>null</friend>
+                <friend>null</friend>
+                <friend>null</friend>
+                <friend>null</friend>
+                <friend>null</friend>
+            </friends>
+        </gamer>
+        <gamer age="17" nickname="Tanos" online="true" friendsItr="1">
+            <friends>
+                <friend>StrajGalaktiki</friend>
+                <friend>null</friend>
+                <friend>null</friend>
+                <friend>null</friend>
+                <friend>null</friend>
+                <friend>null</friend>
+                <friend>null</friend>
+                <friend>null</friend>
+                <friend>null</friend>
+                <friend>null</friend>
+            </friends>
+        </gamer>
+        <gamer age="16" nickname="ChelovekPauk" online="false" friendsItr="1">
+            <friends>
+                <friend>StrajGalaktiki</friend>
+                <friend>null</friend>
+                <friend>null</friend>
+                <friend>null</friend>
+                <friend>null</friend>
+                <friend>null</friend>
+                <friend>null</friend>
+                <friend>null</friend>
+                <friend>null</friend>
+                <friend>null</friend>
+            </friends>
+        </gamer>
+    </gamers>
+</GameMembers>
