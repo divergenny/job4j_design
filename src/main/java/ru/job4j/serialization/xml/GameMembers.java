@@ -3,7 +3,7 @@ package ru.job4j.serialization.xml;
 import javax.xml.bind.annotation.*;
 import java.util.List;
 
-@XmlRootElement(name = "game_members")
+@XmlRootElement(name = "GameMembers")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class GameMembers {
     @XmlAttribute
