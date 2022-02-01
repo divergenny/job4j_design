@@ -1,5 +1,7 @@
 package ru.job4j.serialization.json;
 
+import org.json.JSONPropertyIgnore;
+
 import java.util.Arrays;
 
 public class Gamer {
@@ -8,6 +10,16 @@ public class Gamer {
     private boolean online;
     private String[] friends = new String[10];
     private int friendsItr = 0;
+    private GameMembers currentGame;
+
+    @JSONPropertyIgnore
+    public GameMembers getCurrentGame() {
+        return currentGame;
+    }
+
+    public void setCurrentGame(GameMembers currentGame) {
+        this.currentGame = currentGame;
+    }
 
     public Gamer(int age, String nickname, boolean online) {
         this.age = age;
@@ -21,6 +33,18 @@ public class Gamer {
 
     public boolean isOnline() {
         return online;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String[] getFriends() {
+        return friends;
+    }
+
+    public int getFriendsItr() {
+        return friendsItr;
     }
 
     public void addFriend(String friend) {

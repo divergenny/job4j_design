@@ -2,6 +2,9 @@ package ru.job4j.serialization.json;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.json.JSONPropertyIgnore;
 
 import java.util.ArrayList;
 
@@ -11,11 +14,33 @@ public class GameMembers {
     int online;
     String nameOfGame;
     List<Gamer> gamers;
+    Gamer bestGamer;
 
     public GameMembers(int online, String nameOfGame, List<Gamer> gamers) {
         this.online = online;
         this.nameOfGame = nameOfGame;
         this.gamers = gamers;
+    }
+
+    @JSONPropertyIgnore
+    public Gamer getBestGamer() {
+        return bestGamer;
+    }
+
+    public void setBestGamer(Gamer bestGamer) {
+        this.bestGamer = bestGamer;
+    }
+
+    public List<Gamer> getGamers() {
+        return gamers;
+    }
+
+    public int getOnline() {
+        return online;
+    }
+
+    public String getNameOfGame() {
+        return nameOfGame;
     }
 
     public static int getNumOnlineUsers(List<Gamer> listOfGamers) {
@@ -27,6 +52,7 @@ public class GameMembers {
         }
         return rsl;
     }
+
 
     @Override
     public String toString() {
@@ -50,6 +76,19 @@ public class GameMembers {
         gamers.add(gamer2);
         gamers.add(gamer3);
         GameMembers harryPotter = new GameMembers(getNumOnlineUsers(gamers), "Harry Potter 5", gamers);
+        harryPotter.setBestGamer(gamer1);
+        gamer1.setCurrentGame(harryPotter);
+        gamer2.setCurrentGame(harryPotter);
+        gamer3.setCurrentGame(harryPotter);
+
+        JSONArray jsonGamers = new JSONArray(harryPotter.getGamers());
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("online", harryPotter.getOnline());
+        jsonObject.put("nameOfGame", harryPotter.getNameOfGame());
+        jsonObject.put("gamers", jsonGamers);
+        jsonObject.put("bestGamer", harryPotter.getBestGamer());
+        System.out.println(jsonObject.toString());
+        System.out.println(new JSONObject(harryPotter).toString());
 
         final Gson gson = new GsonBuilder().create();
         System.out.println("GameMembers convert to json: " + gson.toJson(harryPotter));
