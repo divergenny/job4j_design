@@ -10,7 +10,7 @@ public class Gamer {
     private boolean online;
     private String[] friends = new String[10];
     private int friendsItr = 0;
-    private GameMembers currentGame;
+    private transient GameMembers currentGame;
 
     @JSONPropertyIgnore
     public GameMembers getCurrentGame() {

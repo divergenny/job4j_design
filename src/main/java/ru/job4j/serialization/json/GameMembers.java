@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.json.JSONPropertyIgnore;
 
 import java.util.ArrayList;
 
@@ -22,7 +21,6 @@ public class GameMembers {
         this.gamers = gamers;
     }
 
-    @JSONPropertyIgnore
     public Gamer getBestGamer() {
         return bestGamer;
     }
@@ -52,7 +50,6 @@ public class GameMembers {
         }
         return rsl;
     }
-
 
     @Override
     public String toString() {
@@ -87,6 +84,7 @@ public class GameMembers {
         jsonObject.put("nameOfGame", harryPotter.getNameOfGame());
         jsonObject.put("gamers", jsonGamers);
         jsonObject.put("bestGamer", harryPotter.getBestGamer());
+
         System.out.println(jsonObject.toString());
         System.out.println(new JSONObject(harryPotter).toString());
 
