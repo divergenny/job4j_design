@@ -6,8 +6,8 @@ create table workers(
 );
 
 insert into workers(name, married, birthday) 
-values('Vlad', false, '20.01.1997')
+values('Vlad', false, '20.01.1997');
 
-update workers set birthday = '22.07.1997'
+update workers set birthday = '22.07.1997';
 
-delete from workers
+delete from workers;
