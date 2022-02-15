@@ -40,12 +40,12 @@ CREATE TABLE states(
 
 CREATE TABLE attachments(
     id serial primary key,
-    attach oid
+    attach_path text
 );
 
 CREATE TABLE comments(
     id serial primary key,
     comment text,
     item_id int references items(id),
-    attachment_id references attachments(id)
+    attachment_id int references attachments(id)
 );
