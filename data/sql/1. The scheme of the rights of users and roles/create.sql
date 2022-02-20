@@ -1,51 +1,53 @@
-CREATE TABLE roles(
+create TABLE roles(
     id serial primary key,
     name varchar(255)
 );
 
-CREATE TABLE users(
+create TABLE users(
     id serial primary key,
     name varchar(255),
     role_id int references roles(id)
 );
 
-CREATE TABLE rules(
+create TABLE rules(
     id serial primary key,
     name varchar(255)
 );
 
-CREATE TABLE roles_rules(
+create TABLE roles_rules(
     id serial primary key,
     role_id int references roles(id),
     rule_id int references rules(id)
 );
 
-CREATE TABLE items(
+
+create TABLE categories(
+    id serial primary key,
+    category_name varchar(255)
+);
+
+create TABLE states(
+    id serial primary key,
+    active boolean
+);
+
+create TABLE items(
     id serial primary key,
     name varchar(255),
-    user_id int references users(id)
+    user_id int references users(id),
+    category_id int references categories(id),
+    state_id int references states(id)
 );
 
-CREATE TABLE categories(
+
+create TABLE attachments(
     id serial primary key,
-    category_name varchar(255),
+    attach_path text,
     item_id int references items(id)
 );
 
-CREATE TABLE states(
-    id serial primary key,
-    active boolean,
-    item_id int references items(id)
-);
-
-CREATE TABLE attachments(
-    id serial primary key,
-    attach_path text
-);
-
-CREATE TABLE comments(
+create TABLE comments(
     id serial primary key,
     comment text,
-    item_id int references items(id),
-    attachment_id int references attachments(id)
+    item_id int references items(id)
 );
