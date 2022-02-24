@@ -19,6 +19,14 @@ public class TableEditor implements AutoCloseable {
         return connection;
     }
 
+    private void executeQuery(String query) {
+        try (Statement statement = connection.createStatement()) {
+            statement.execute(query);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
     public TableEditor(Properties properties) throws SQLException, ClassNotFoundException {
         this.properties = properties;
         String url = properties.getProperty("database-url");
@@ -34,78 +42,48 @@ public class TableEditor implements AutoCloseable {
     }
 
     public void createTable(String tableName) {
-        try (Statement statement = connection.createStatement()) {
-            String query = String.format(
-                    "create table if not exists %s();",
-                    tableName
-            );
-            statement.execute(query);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        String query = String.format(
+                "create table if not exists %s();",
+                tableName
+        );
+        executeQuery(query);
     }
 
     public void dropTable(String tableName) {
-        try (Statement statement = connection.createStatement()) {
-            String query = String.format(
-                    "drop table if exists %s;",
-                    tableName
-            );
-            statement.execute(query);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        String query = String.format(
+                "drop table if exists %s;",
+                tableName
+        );
+        executeQuery(query);
     }
 
     public void addColumn(String tableName, String columnName, String type) {
-        try (Statement statement = connection.createStatement()) {
-            String query = String.format(
-                    "alter table if exists %s add column IF NOT EXISTS %s %s;",
-                    tableName,
-                    columnName,
-                    type
-            );
-            statement.execute(query);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        String query = String.format(
+                "alter table if exists %s add column IF NOT EXISTS %s %s;",
+                tableName,
+                columnName,
+                type
+        );
+        executeQuery(query);
     }
 
     public void dropColumn(String tableName, String columnName) {
-        try (Statement statement = connection.createStatement()) {
-            String query = String.format(
-                    "alter table if exists %s drop column %s;",
-                    tableName,
-                    columnName
-            );
-            statement.execute(query);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        String query = String.format(
+                "alter table if exists %s drop column %s;",
+                tableName,
+                columnName
+        );
+        executeQuery(query);
     }
 
     public void renameColumn(String tableName, String columnName, String newColumnName) {
-        try (Statement statement = connection.createStatement()) {
-            String query = String.format(
-                    "alter table if exists %s rename %s to %s;",
-                    tableName,
-                    columnName,
-                    newColumnName
-            );
-            statement.execute(query);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        String query = String.format(
+                "alter table if exists %s rename %s to %s;",
+                tableName,
+                columnName,
+                newColumnName
+        );
+        executeQuery(query);
     }
 
     public static String getTableScheme(Connection connection, String tableName) throws Exception {
@@ -138,18 +116,18 @@ public class TableEditor implements AutoCloseable {
         Properties properties = new Properties();
         try {
             properties.load(new FileInputStream(new File("./src/main/resources/app.properties")));
-            TableEditor editor = new TableEditor(properties);
-            editor.createTable("vlad");
-            System.out.println(getTableScheme(editor.getConnection(), "vlad"));
-            editor.addColumn("vlad", "head_of_company", "varchar");
-            editor.addColumn("vlad", "cars", "varchar");
-            System.out.println(getTableScheme(editor.getConnection(), "vlad"));
-            editor.dropColumn("vlad", "cars");
-            System.out.println(getTableScheme(editor.getConnection(), "vlad"));
-            editor.renameColumn("vlad", "head_of_company", "head_of_corporation");
-            System.out.println(getTableScheme(editor.getConnection(), "vlad"));
-            editor.dropTable("vlad");
-            editor.close();
+            try (TableEditor editor = new TableEditor(properties)) {
+                editor.createTable("vlad");
+                System.out.println(getTableScheme(editor.getConnection(), "vlad"));
+                editor.addColumn("vlad", "head_of_company", "varchar");
+                editor.addColumn("vlad", "cars", "varchar");
+                System.out.println(getTableScheme(editor.getConnection(), "vlad"));
+                editor.dropColumn("vlad", "cars");
+                System.out.println(getTableScheme(editor.getConnection(), "vlad"));
+                editor.renameColumn("vlad", "head_of_company", "head_of_corporation");
+                System.out.println(getTableScheme(editor.getConnection(), "vlad"));
+                editor.dropTable("vlad");
+            }
         } catch (IOException e) {
             e.printStackTrace();
         } catch (SQLException throwables) {
