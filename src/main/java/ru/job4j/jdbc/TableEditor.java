@@ -114,8 +114,8 @@ public class TableEditor implements AutoCloseable {
 
     public static void main(String[] args) {
         Properties properties = new Properties();
-        try {
-            properties.load(new FileInputStream(new File("./src/main/resources/app.properties")));
+        try (FileInputStream inputStream = new FileInputStream("./src/main/resources/app.properties")) {
+            properties.load(inputStream);
             try (TableEditor editor = new TableEditor(properties)) {
                 editor.createTable("vlad");
                 System.out.println(getTableScheme(editor.getConnection(), "vlad"));
