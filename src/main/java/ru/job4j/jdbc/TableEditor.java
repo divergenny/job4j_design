@@ -1,6 +1,5 @@
 package ru.job4j.jdbc;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
