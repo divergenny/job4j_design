@@ -19,7 +19,7 @@ LANGUAGE 'plpgsql';
 
 
 create trigger third_task_save_info_trigger
-    before insert
+    after insert
     on products
     for each row
     execute procedure third_task_save_info();
