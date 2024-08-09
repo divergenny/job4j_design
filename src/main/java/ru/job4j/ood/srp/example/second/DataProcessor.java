@@ -7,17 +7,17 @@ package ru.job4j.ood.srp.example.second;
  * Решение: Разделить функциональность работы с файлами в отдельный класс.
  * class DataProcessor (processData()) и class FileHandler (saveToFile(String filename),
  * loadFromFile(String filename) ).
+ * Метод processData() - должен содержать логику обработки данных.
+ * Метод saveToFile(String filename) - должен содержать логику сохранения данных в файл.
+ * Метод loadFromFile(String filename) - должен содержать логику загрузки данных из файла.
  */
 public class DataProcessor {
     public void processData() {
-        // Логика обработки данных
     }
 
     public void saveToFile(String filename) {
-        // Логика сохранения данных в файл
     }
 
     public void loadFromFile(String filename) {
-        // Логика загрузки данных из файла
     }
 }

@@ -5,18 +5,18 @@ package ru.job4j.ood.srp.example.third;
  * Это две разные ответственности, что нарушает принцип единственной ответственности (SRP).
  * Решение: Разделить функциональность работы с базой данных в отдельный класс.
  * class ReportGenerator (generateReport() ), class DatabaseConnector (connectToDatabase(),
- * executeQuery(String query) ).
+ * executeQuery(String query) ).\
+ * Метод generateReport() - должен содержать логику генерации отчёта.
+ * Метод connectToDatabase() - должен содержать логику подключения к базе данных.
+ * Метод executeQuery(String query) - должен содержать логику выполнения запроса к базе данных.
  */
 public class ReportGenerator {
     public void generateReport() {
-        // Логика генерации отчета
     }
 
     public void connectToDatabase() {
-        // Логика подключения к базе данных
     }
 
     public void executeQuery(String query) {
-        // Логика выполнения запроса к базе данных
     }
 }
