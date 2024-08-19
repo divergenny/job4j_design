@@ -6,7 +6,6 @@ import ru.job4j.ood.srp.adapter.JsonCalendarAdapter;
 import ru.job4j.ood.srp.model.Employee;
 import ru.job4j.ood.srp.store.Store;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -15,7 +14,6 @@ import java.util.function.Predicate;
 public class JsonReportEngine implements Report {
 
     private final Store store;
-    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd:MM:yyyy HH:mm");
 
     public JsonReportEngine(Store store) {
         this.store = store;
