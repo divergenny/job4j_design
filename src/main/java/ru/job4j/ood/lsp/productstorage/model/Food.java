@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class Food {
-    private static final DateTimeFormatter FORMATTER =
+    private final DateTimeFormatter formatter =
             DateTimeFormatter.ofPattern("dd-MM-yyyy");
     private int id;
     private String name;
@@ -100,8 +100,8 @@ public class Food {
         return "Food{"
                 + "id=" + id
                 + ", name='" + name + '\''
-                + ", createDate=" + FORMATTER.format(createDate)
-                + ", expiryDate=" + FORMATTER.format(expiryDate)
+                + ", createDate=" + formatter.format(createDate)
+                + ", expiryDate=" + formatter.format(expiryDate)
                 + ", price=" + price
                 + ", discount=" + discount
                 + '}';

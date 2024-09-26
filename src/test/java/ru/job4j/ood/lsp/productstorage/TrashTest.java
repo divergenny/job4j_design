@@ -10,9 +10,9 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class TrashTest {
-    Food firstFood;
-    Food secondFood;
-    Food thirdFood;
+    private Food firstFood;
+    private Food secondFood;
+    private Food thirdFood;
 
     @BeforeEach
     void init() {

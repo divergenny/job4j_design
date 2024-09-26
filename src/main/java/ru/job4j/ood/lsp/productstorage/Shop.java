@@ -1,6 +1,9 @@
 package ru.job4j.ood.lsp.productstorage;
 
 import ru.job4j.ood.lsp.productstorage.model.Food;
+import ru.job4j.ood.lsp.productstorage.service.CalculateForExpirationDate;
+
+import java.time.LocalDate;
 
 public class Shop extends AbstractStore {
     public Shop() {
@@ -12,8 +15,9 @@ public class Shop extends AbstractStore {
 
 
     @Override
-    public boolean addToSpecificStoreByConditions(Food food, double ratio,
-                                                  long daysLeftToExpirationDate, long quantityOfAllStorageLife) {
+    public boolean addToSpecificStoreByConditions(LocalDate currentDate, Food food) {
+        CalculateForExpirationDate calc = new CalculateForExpirationDate();
+        double ratio = calc.calcRatioExpDatePercentage(currentDate, food);
         if (ratio >= 25 && ratio <= 75) {
             add(food);
             return true;
@@ -31,4 +35,5 @@ public class Shop extends AbstractStore {
                 + "foods=" + foods
                 + '}';
     }
+
 }

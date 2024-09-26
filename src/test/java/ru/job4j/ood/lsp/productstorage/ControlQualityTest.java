@@ -13,17 +13,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class ControlQualityTest {
 
-    Food firstFoodWarehouse;
-    Food secondFoodShop;
-    Food thirdFoodShopWithDiscount;
-    Food fourthFoodTrash;
-    Food fifthFoodTrash;
-    LocalDate currentDate;
-    ControlQuality cq;
-    Store warehouse;
-    Store shop;
-    Store trash;
-    List<Store> listOfStores;
+    private Food firstFoodWarehouse;
+    private Food secondFoodShop;
+    private Food thirdFoodShopWithDiscount;
+    private Food fourthFoodTrash;
+    private Food fifthFoodTrash;
+    private LocalDate currentDate;
+    private ControlQuality cq;
+    private Store warehouse;
+    private Store shop;
+    private Store trash;
+    private List<Store> listOfStores;
 
     @BeforeEach
     void init() {
@@ -61,11 +61,11 @@ public class ControlQualityTest {
         listOfStores.add(warehouse);
         listOfStores.add(shop);
         listOfStores.add(trash);
-        cq.sortProductToStore(firstFoodWarehouse, listOfStores, currentDate);
-        cq.sortProductToStore(secondFoodShop, listOfStores, currentDate);
-        cq.sortProductToStore(thirdFoodShopWithDiscount, listOfStores, currentDate);
-        cq.sortProductToStore(fourthFoodTrash, listOfStores, currentDate);
-        cq.sortProductToStore(fifthFoodTrash, listOfStores, currentDate);
+        cq.sortProductToStore(currentDate, firstFoodWarehouse, listOfStores);
+        cq.sortProductToStore(currentDate, secondFoodShop, listOfStores);
+        cq.sortProductToStore(currentDate, thirdFoodShopWithDiscount, listOfStores);
+        cq.sortProductToStore(currentDate, fourthFoodTrash, listOfStores);
+        cq.sortProductToStore(currentDate, fifthFoodTrash, listOfStores);
     }
 
     @Test

@@ -7,7 +7,7 @@ import java.util.List;
 
 public abstract class AbstractStore implements Store {
 
-    List<Food> foods = new ArrayList<>();
+    protected List<Food> foods = new ArrayList<>();
 
     private int ids = 1;
 
