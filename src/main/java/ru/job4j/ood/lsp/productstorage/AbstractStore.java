@@ -7,6 +7,12 @@ import java.util.List;
 
 public abstract class AbstractStore implements Store {
 
+    protected final short twentyFiveBorder = 25;
+    protected final short seventyFiveBorder = 75;
+    protected final short oneHundredBorder = 100;
+    protected final double discountMultiplier = 0.2;
+    protected final short daysLeftToExpirationDateForTrash = 1;
+
     protected List<Food> foods = new ArrayList<>();
 
     private int ids = 1;

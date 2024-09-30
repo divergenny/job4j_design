@@ -13,16 +13,15 @@ public class Shop extends AbstractStore {
         super(food);
     }
 
-
     @Override
     public boolean addToSpecificStoreByConditions(LocalDate currentDate, Food food) {
         CalculateForExpirationDate calc = new CalculateForExpirationDate();
         double ratio = calc.calcRatioExpDatePercentage(currentDate, food);
-        if (ratio >= 25 && ratio <= 75) {
+        if (ratio >= twentyFiveBorder && ratio <= seventyFiveBorder) {
             add(food);
             return true;
-        } else if (ratio > 75 && ratio < 100) {
-            food.setPrice(food.getPrice() - (food.getPrice() * 0.2));
+        } else if (ratio > seventyFiveBorder && ratio < oneHundredBorder) {
+            food.setPrice(food.getPrice() - (food.getPrice() * discountMultiplier));
             add(food);
             return true;
         }
@@ -35,5 +34,4 @@ public class Shop extends AbstractStore {
                 + "foods=" + foods
                 + '}';
     }
-
 }

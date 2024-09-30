@@ -13,12 +13,11 @@ public class Warehouse extends AbstractStore {
         super(food);
     }
 
-
     @Override
     public boolean addToSpecificStoreByConditions(LocalDate currentDate, Food food) {
         CalculateForExpirationDate calc = new CalculateForExpirationDate();
         double ratio = calc.calcRatioExpDatePercentage(currentDate, food);
-        if (ratio < 25) {
+        if (ratio < twentyFiveBorder) {
             add(food);
             return true;
         }

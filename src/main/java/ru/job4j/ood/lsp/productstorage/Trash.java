@@ -13,12 +13,11 @@ public class Trash extends AbstractStore {
         super(food);
     }
 
-
     @Override
     public boolean addToSpecificStoreByConditions(LocalDate currentDate, Food food) {
         CalculateForExpirationDate calc = new CalculateForExpirationDate();
         double daysLeftToExpirationDate = calc.calcDaysLeftToExpirationDate(currentDate, food);
-        if (daysLeftToExpirationDate < 1) {
+        if (daysLeftToExpirationDate < daysLeftToExpirationDateForTrash) {
             add(food);
             return true;
         }
