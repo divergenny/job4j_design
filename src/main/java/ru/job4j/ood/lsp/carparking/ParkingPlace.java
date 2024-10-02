@@ -7,5 +7,15 @@ public interface ParkingPlace {
 
     List<Vehicle> findAll();
 
+    boolean addVehicleToSpecificParkingPlace(Vehicle vehicle);
+
     boolean checkConditions(Vehicle vehicle);
+
+    TypeOfVehicle getTypeOfVehicleParkingPlace();
+
+    int getOverallParkingPlaceSize();
+
+    int getAvailableParkingPlaceSize();
+
+    boolean isAvailableToParking(int size);
 }
