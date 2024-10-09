@@ -17,5 +17,5 @@ public interface ParkingPlace {
 
     int getAvailableParkingPlaceSize();
 
-    boolean isAvailableToParking(int size);
+    boolean isAvailableToParking(Vehicle vehicle);
 }
