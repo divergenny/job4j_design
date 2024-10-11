@@ -1,11 +1,10 @@
 package ru.job4j.ood.lsp.carparking;
 
-import org.junit.Test;
-import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Disabled("Тесты отключены. Удалить аннотацию после реализации всех методов по заданию.")
+
 public class CarParkingPlaceTest {
     @Test
     void whenCheckIsAvailableToParkingCarThenTrue() {
@@ -18,7 +17,7 @@ public class CarParkingPlaceTest {
     void whenCheckIsAvailableToParkingTruckThenTrue() {
         ParkingPlace carParkingPlace = new CarParkingPlace(4);
         Vehicle firstCarVehicle = new CarVehicle("firstCar");
-        carParkingPlace.add(firstCarVehicle);
+        carParkingPlace.addVehicleToSpecificParkingPlace(firstCarVehicle);
         Vehicle firstTruckVehicle = new TruckVehicle("firstTruck", 2);
         assertThat(carParkingPlace.isAvailableToParking(firstTruckVehicle)).isEqualTo(Boolean.TRUE);
     }
@@ -29,8 +28,8 @@ public class CarParkingPlaceTest {
         Vehicle firstCarVehicle = new CarVehicle("firstCar");
         Vehicle firstTruckVehicle = new TruckVehicle("secondTruck", 3);
         Vehicle secondTruckVehicle = new TruckVehicle("thirdTruck", 3);
-        carParkingPlace.add(firstCarVehicle);
-        carParkingPlace.add(firstTruckVehicle);
+        carParkingPlace.addVehicleToSpecificParkingPlace(firstCarVehicle);
+        carParkingPlace.addVehicleToSpecificParkingPlace(firstTruckVehicle);
         assertThat(carParkingPlace.isAvailableToParking(secondTruckVehicle)).isEqualTo(Boolean.FALSE);
     }
 }

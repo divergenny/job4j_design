@@ -1,41 +1,65 @@
 package ru.job4j.ood.lsp.carparking;
 
-import java.util.List;
+import java.util.Objects;
 
 public class TruckParkingPlace extends AbstractParkingPlace {
-    int size;
+
+    TypeOfVehicle typeOfVehicleParkingPlace = TypeOfVehicle.TRUCK;
 
     public TruckParkingPlace(int size) {
-        this.size = size;
-    }
-
-    @Override
-    public boolean addVehicleToSpecificParkingPlace(Vehicle vehicle) {
-        return false;
-    }
-
-    @Override
-    public boolean checkConditions(Vehicle vehicle) {
-        return false;
+        if (size < 0) {
+            throw new IllegalArgumentException();
+        }
+        overallParkingPlaceSize = size;
+        availableParkingPlaceSize = size;
     }
 
     @Override
     public TypeOfVehicle getTypeOfVehicleParkingPlace() {
-        return null;
-    }
-
-    @Override
-    public int getOverallParkingPlaceSize() {
-        return 0;
-    }
-
-    @Override
-    public int getAvailableParkingPlaceSize() {
-        return 0;
+        return typeOfVehicleParkingPlace;
     }
 
     @Override
     public boolean isAvailableToParking(Vehicle vehicle) {
+        if (vehicle.getSize() > 1 && availableParkingPlaceSize > 0) {
+            availableParkingPlaceSize--;
+            return true;
+        }
         return false;
+    }
+
+    @Override
+    public int setAvailableParkingPlaceSize(Vehicle vehicle) {
+        return availableParkingPlaceSize--;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
+        TruckParkingPlace that = (TruckParkingPlace) o;
+        return typeOfVehicleParkingPlace == that.typeOfVehicleParkingPlace;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), typeOfVehicleParkingPlace);
+    }
+
+    @Override
+    public String toString() {
+        return "TruckParkingPlace{"
+                + "typeOfVehicleParkingPlace=" + typeOfVehicleParkingPlace
+                + ", vehicles=" + vehicles
+                + ", overallParkingPlaceSize=" + overallParkingPlaceSize
+                + ", availableParkingPlaceSize=" + availableParkingPlaceSize
+                + '}';
     }
 }

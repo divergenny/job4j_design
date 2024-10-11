@@ -9,8 +9,6 @@ public interface ParkingPlace {
 
     boolean addVehicleToSpecificParkingPlace(Vehicle vehicle);
 
-    boolean checkConditions(Vehicle vehicle);
-
     TypeOfVehicle getTypeOfVehicleParkingPlace();
 
     int getOverallParkingPlaceSize();
@@ -18,4 +16,6 @@ public interface ParkingPlace {
     int getAvailableParkingPlaceSize();
 
     boolean isAvailableToParking(Vehicle vehicle);
+
+    int setAvailableParkingPlaceSize(Vehicle vehicle);
 }

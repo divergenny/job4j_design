@@ -9,7 +9,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Disabled("Тесты отключены. Удалить аннотацию после реализации всех методов по заданию.")
+
 public class ControlParkingPlaceTest {
     List<ParkingPlace> parkingPlaces;
     ParkingPlace underCheryomushkaCarParking;
@@ -31,48 +31,51 @@ public class ControlParkingPlaceTest {
         sparkCar = new CarVehicle("Spark 2");
         belazTruck = new TruckVehicle("BelAZ", 2);
         fargoTruck = new TruckVehicle("Fargo", 3);
-        controlUnderCheryomushkaParkingPlace = new ControlParkingPlace();
     }
 
     @Test
     void whenCheckSortOfCar() {
-        controlUnderCheryomushkaParkingPlace.sortToParkingPlace(nexiaCar, parkingPlaces);
-        controlUnderCheryomushkaParkingPlace.sortToParkingPlace(sparkCar, parkingPlaces);
-        controlUnderCheryomushkaParkingPlace.sortToParkingPlace(belazTruck, parkingPlaces);
-        controlUnderCheryomushkaParkingPlace.sortToParkingPlace(fargoTruck, parkingPlaces);
+        controlUnderCheryomushkaParkingPlace = new ControlParkingPlace(parkingPlaces);
+        controlUnderCheryomushkaParkingPlace.sortToParkingPlace(nexiaCar);
+        controlUnderCheryomushkaParkingPlace.sortToParkingPlace(sparkCar);
+        controlUnderCheryomushkaParkingPlace.sortToParkingPlace(belazTruck);
+        controlUnderCheryomushkaParkingPlace.sortToParkingPlace(fargoTruck);
         List<Vehicle> expected = List.of(nexiaCar, sparkCar);
         assertThat(underCheryomushkaCarParking.findAll()).isEqualTo(expected);
     }
 
     @Test
     void whenCheckSortOfTruck() {
-        controlUnderCheryomushkaParkingPlace.sortToParkingPlace(nexiaCar, parkingPlaces);
-        controlUnderCheryomushkaParkingPlace.sortToParkingPlace(sparkCar, parkingPlaces);
-        controlUnderCheryomushkaParkingPlace.sortToParkingPlace(belazTruck, parkingPlaces);
-        controlUnderCheryomushkaParkingPlace.sortToParkingPlace(fargoTruck, parkingPlaces);
+        controlUnderCheryomushkaParkingPlace = new ControlParkingPlace(parkingPlaces);
+        controlUnderCheryomushkaParkingPlace.sortToParkingPlace(nexiaCar);
+        controlUnderCheryomushkaParkingPlace.sortToParkingPlace(sparkCar);
+        controlUnderCheryomushkaParkingPlace.sortToParkingPlace(belazTruck);
+        controlUnderCheryomushkaParkingPlace.sortToParkingPlace(fargoTruck);
         List<Vehicle> expected = List.of(belazTruck, fargoTruck);
         assertThat(underCheryomushkaTruckParking.findAll()).isEqualTo(expected);
     }
 
     @Test
     void whenTruckParkingFullAndSortTruckOnCarParking() {
-        controlUnderCheryomushkaParkingPlace.sortToParkingPlace(nexiaCar, parkingPlaces);
-        controlUnderCheryomushkaParkingPlace.sortToParkingPlace(sparkCar, parkingPlaces);
-        controlUnderCheryomushkaParkingPlace.sortToParkingPlace(belazTruck, parkingPlaces);
-        controlUnderCheryomushkaParkingPlace.sortToParkingPlace(fargoTruck, parkingPlaces);
+        controlUnderCheryomushkaParkingPlace = new ControlParkingPlace(parkingPlaces);
+        controlUnderCheryomushkaParkingPlace.sortToParkingPlace(nexiaCar);
+        controlUnderCheryomushkaParkingPlace.sortToParkingPlace(sparkCar);
+        controlUnderCheryomushkaParkingPlace.sortToParkingPlace(belazTruck);
+        controlUnderCheryomushkaParkingPlace.sortToParkingPlace(fargoTruck);
         Vehicle uralTruck = new TruckVehicle("Ural", 2);
-        controlUnderCheryomushkaParkingPlace.sortToParkingPlace(uralTruck, parkingPlaces);
+        controlUnderCheryomushkaParkingPlace.sortToParkingPlace(uralTruck);
         List<Vehicle> expected = List.of(nexiaCar, sparkCar, uralTruck);
         assertThat(underCheryomushkaCarParking.findAll()).isEqualTo(expected);
     }
 
     @Test
     void whenSortTruckOnCarParkingAndNoPlace() {
-        controlUnderCheryomushkaParkingPlace.sortToParkingPlace(nexiaCar, parkingPlaces);
-        controlUnderCheryomushkaParkingPlace.sortToParkingPlace(sparkCar, parkingPlaces);
-        controlUnderCheryomushkaParkingPlace.sortToParkingPlace(belazTruck, parkingPlaces);
-        controlUnderCheryomushkaParkingPlace.sortToParkingPlace(fargoTruck, parkingPlaces);
+        controlUnderCheryomushkaParkingPlace = new ControlParkingPlace(parkingPlaces);
+        controlUnderCheryomushkaParkingPlace.sortToParkingPlace(nexiaCar);
+        controlUnderCheryomushkaParkingPlace.sortToParkingPlace(sparkCar);
+        controlUnderCheryomushkaParkingPlace.sortToParkingPlace(belazTruck);
+        controlUnderCheryomushkaParkingPlace.sortToParkingPlace(fargoTruck);
         Vehicle uralTruck = new TruckVehicle("Ural", 5);
-        assertThat(controlUnderCheryomushkaParkingPlace.sortToParkingPlace(uralTruck, parkingPlaces)).isEqualTo(Boolean.FALSE);
+        assertThat(controlUnderCheryomushkaParkingPlace.sortToParkingPlace(uralTruck)).isEqualTo(Boolean.FALSE);
     }
 }

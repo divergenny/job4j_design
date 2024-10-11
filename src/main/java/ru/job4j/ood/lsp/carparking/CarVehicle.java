@@ -1,21 +1,44 @@
 package ru.job4j.ood.lsp.carparking;
 
-public class CarVehicle extends AbstractVehicle {
-    String model;
+import java.util.Objects;
 
-    final int size = 1;
+public class CarVehicle extends AbstractVehicle {
+    final int sizeOfVehicle = 1;
 
     public CarVehicle(String model) {
-        this.model = model;
-    }
-
-    @Override
-    public TypeOfVehicle getTypeOfVehicle() {
-        return null;
+        super(model);
     }
 
     @Override
     public int getSize() {
-        return 0;
+        return sizeOfVehicle;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
+        CarVehicle that = (CarVehicle) o;
+        return sizeOfVehicle == that.sizeOfVehicle;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), sizeOfVehicle);
+    }
+
+    @Override
+    public String toString() {
+        return "CarVehicle{"
+                + "sizeOfVehicle=" + sizeOfVehicle
+                + ", model='" + model + '\''
+                + '}';
     }
 }
