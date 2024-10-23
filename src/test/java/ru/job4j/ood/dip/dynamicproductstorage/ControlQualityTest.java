@@ -63,61 +63,61 @@ public class ControlQualityTest {
 
     @Test
     void whenCheckWarehouseStore() {
-        ControlQuality cq = new ControlQuality();
-        cq.sortProductToStore(currentDate, firstFoodWarehouse, listOfStores);
-        cq.sortProductToStore(currentDate, secondFoodShop, listOfStores);
-        cq.sortProductToStore(currentDate, thirdFoodShopWithDiscount, listOfStores);
-        cq.sortProductToStore(currentDate, fourthFoodTrash, listOfStores);
-        cq.sortProductToStore(currentDate, fifthFoodTrash, listOfStores);
+        ControlQuality cq = new ControlQuality(listOfStores);
+        cq.sortProductToStore(currentDate, firstFoodWarehouse);
+        cq.sortProductToStore(currentDate, secondFoodShop);
+        cq.sortProductToStore(currentDate, thirdFoodShopWithDiscount);
+        cq.sortProductToStore(currentDate, fourthFoodTrash);
+        cq.sortProductToStore(currentDate, fifthFoodTrash);
         List<Food> expected = List.of(firstFoodWarehouse);
         assertThat(warehouse.findAll()).isEqualTo(expected);
     }
 
     @Test
     void whenCheckShopStore() {
-        ControlQuality cq = new ControlQuality();
-        cq.sortProductToStore(currentDate, firstFoodWarehouse, listOfStores);
-        cq.sortProductToStore(currentDate, secondFoodShop, listOfStores);
-        cq.sortProductToStore(currentDate, thirdFoodShopWithDiscount, listOfStores);
-        cq.sortProductToStore(currentDate, fourthFoodTrash, listOfStores);
-        cq.sortProductToStore(currentDate, fifthFoodTrash, listOfStores);
+        ControlQuality cq = new ControlQuality(listOfStores);
+        cq.sortProductToStore(currentDate, firstFoodWarehouse);
+        cq.sortProductToStore(currentDate, secondFoodShop);
+        cq.sortProductToStore(currentDate, thirdFoodShopWithDiscount);
+        cq.sortProductToStore(currentDate, fourthFoodTrash);
+        cq.sortProductToStore(currentDate, fifthFoodTrash);
         List<Food> expected = List.of(secondFoodShop, thirdFoodShopWithDiscount);
         assertThat(shop.findAll()).isEqualTo(expected);
     }
 
     @Test
     void whenCheckShopStorePriceWithDiscount() {
-        ControlQuality cq = new ControlQuality();
-        cq.sortProductToStore(currentDate, firstFoodWarehouse, listOfStores);
-        cq.sortProductToStore(currentDate, secondFoodShop, listOfStores);
-        cq.sortProductToStore(currentDate, thirdFoodShopWithDiscount, listOfStores);
-        cq.sortProductToStore(currentDate, fourthFoodTrash, listOfStores);
-        cq.sortProductToStore(currentDate, fifthFoodTrash, listOfStores);
+        ControlQuality cq = new ControlQuality(listOfStores);
+        cq.sortProductToStore(currentDate, firstFoodWarehouse);
+        cq.sortProductToStore(currentDate, secondFoodShop);
+        cq.sortProductToStore(currentDate, thirdFoodShopWithDiscount);
+        cq.sortProductToStore(currentDate, fourthFoodTrash);
+        cq.sortProductToStore(currentDate, fifthFoodTrash);
         assertThat(shop.findById(2).getPrice()).
                 isEqualTo(80.0);
     }
 
     @Test
     void whenCheckTrashStore() {
-        ControlQuality cq = new ControlQuality();
-        cq.sortProductToStore(currentDate, firstFoodWarehouse, listOfStores);
-        cq.sortProductToStore(currentDate, secondFoodShop, listOfStores);
-        cq.sortProductToStore(currentDate, thirdFoodShopWithDiscount, listOfStores);
-        cq.sortProductToStore(currentDate, fourthFoodTrash, listOfStores);
-        cq.sortProductToStore(currentDate, fifthFoodTrash, listOfStores);
+        ControlQuality cq = new ControlQuality(listOfStores);
+        cq.sortProductToStore(currentDate, firstFoodWarehouse);
+        cq.sortProductToStore(currentDate, secondFoodShop);
+        cq.sortProductToStore(currentDate, thirdFoodShopWithDiscount);
+        cq.sortProductToStore(currentDate, fourthFoodTrash);
+        cq.sortProductToStore(currentDate, fifthFoodTrash);
         List<Food> expected = List.of(fourthFoodTrash, fifthFoodTrash);
         assertThat(trash.findAll()).isEqualTo(expected);
     }
 
     @Test
     void whenResortProducts() {
-        ControlQuality cq = new ControlQuality();
-        cq.sortProductToStore(currentDate, firstFoodWarehouse, listOfStores);
-        cq.sortProductToStore(currentDate, secondFoodShop, listOfStores);
-        cq.sortProductToStore(currentDate, thirdFoodShopWithDiscount, listOfStores);
-        cq.sortProductToStore(currentDate, fourthFoodTrash, listOfStores);
-        cq.sortProductToStore(currentDate, fifthFoodTrash, listOfStores);
-        cq.resort(currentDate, listOfStores);
+        ControlQuality cq = new ControlQuality(listOfStores);
+        cq.sortProductToStore(currentDate, firstFoodWarehouse);
+        cq.sortProductToStore(currentDate, secondFoodShop);
+        cq.sortProductToStore(currentDate, thirdFoodShopWithDiscount);
+        cq.sortProductToStore(currentDate, fourthFoodTrash);
+        cq.sortProductToStore(currentDate, fifthFoodTrash);
+        cq.resort(currentDate);
         List<Food> warehouseExpected = List.of(firstFoodWarehouse);
         List<Food> shopExpected = List.of(secondFoodShop, thirdFoodShopWithDiscount);
         List<Food> trashExpected = List.of(fourthFoodTrash, fifthFoodTrash);

@@ -7,19 +7,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ControlQuality {
+    List<Store> stores;
 
-    public void resort(LocalDate currentDate, List<Store> stores) {
+    public ControlQuality(List<Store> stores) {
+        this.stores = stores;
+    }
+
+    public void resort(LocalDate currentDate) {
         List<Food> foods = new ArrayList<>();
         for (Store store : stores) {
             foods.addAll(store.findAll());
             store.deleteAll();
         }
         for (Food food : foods) {
-            sortProductToStore(currentDate, food, stores);
+            sortProductToStore(currentDate, food);
         }
     }
 
-    public void sortProductToStore(LocalDate currentDate, Food food, List<Store> stores) {
+    public void sortProductToStore(LocalDate currentDate, Food food) {
         for (Store store : stores) {
             if (store.addToSpecificStoreByConditions(currentDate, food)) {
                 break;
