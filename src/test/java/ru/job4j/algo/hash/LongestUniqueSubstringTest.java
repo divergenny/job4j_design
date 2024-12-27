@@ -30,13 +30,13 @@ public class LongestUniqueSubstringTest {
     }
 
     @Test
-    public void whenStringHasUniqueCharactersAfterFirst() {
+    public void whenStringHasUniqueCharactersAfterFirstThenVDF() {
         String str = "dvdf";
         assertThat(LongestUniqueSubstring.longestUniqueSubstring(str)).isEqualTo("vdf");
     }
 
     @Test
-    public void whenStringHasRepeatedCharactersThenCAB() {
+    public void whenStringHasRepeatedCharactersThenABC() {
         String str = "abcabcbb";
         assertThat(LongestUniqueSubstring.longestUniqueSubstring(str)).isEqualTo("abc");
     }
