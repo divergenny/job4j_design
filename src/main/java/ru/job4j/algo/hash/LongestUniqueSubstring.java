@@ -4,6 +4,15 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class LongestUniqueSubstring {
+
+    /**
+     * Метод находит самую длинную подстроку состоящую из уникальных элементов.
+     * O(n) = n * (n * logN + logN) + n = N^2logN
+     * Объём используемой памяти:
+     *
+     * @param str строка
+     * @return самая длинная подстрока состоящая из уникальных элементов
+     */
     public static String longestUniqueSubstring(String str) {
         Set<Character> resultUC = new LinkedHashSet<Character>();
         Set<Character> uniqueCharacters = new LinkedHashSet<Character>();
